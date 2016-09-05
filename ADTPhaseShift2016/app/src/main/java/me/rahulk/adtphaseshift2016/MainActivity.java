@@ -17,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AboutPhaseShift.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, AboutPhaseShift.OnFragmentInteractionListener, NewsFeed.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity
         Class fragmentClass = null;
         if (id == R.id.nav_about) {
             fragmentClass = AboutPhaseShift.class;
+        }
+        else if (id == R.id.nav_newsfeed) {
+            fragmentClass = NewsFeed.class;
         }
         else {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

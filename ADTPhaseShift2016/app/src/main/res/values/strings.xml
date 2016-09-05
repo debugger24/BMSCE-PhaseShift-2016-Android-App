@@ -21,5 +21,7 @@
     <string name="aboutPhaseShiftPart3">BMSCE is the first institution in the state to be bestowed with NBA Accreditation in Tier-I format(Washington Accord) for UG programs. It is a beneficiary of TEQIP Phase I and II(Technical Education Quality Improvement Programme, under World Bank Assistance) with an established Centre of Excellence in the Area of Advanced Materials. Accredited with A grade by NAAC with CGPA of 3.14/4.00. Approved by Council of Architecture (COA), New Delhi. BMSCE is currently ranked first in the state of Karnataka,14th among top 150 Engineering Institutions in India as per the Times Engineering Institutes Ranking Survey 2016.</string>
     <string name="aboutPhaseShiftPart4">The ability to, \n\u25CF\tDeploy the skills acquired for development of prototypes in support of ideas using latest technologies.\n\u25CF\tInitiate connects for sustained partnerships with organisations of diverse interests that may lead to establishment of further enterprises.\n\u25CF\tWork with multidisciplinary teams towards a common goal.\n\u25CF\tOrganise and manage the un-foreseen operational challenges.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
