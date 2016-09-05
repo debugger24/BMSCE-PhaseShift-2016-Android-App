@@ -5,4 +5,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!--NAVIGATION MENU-->
+    <string name="newsfeed">Newsfeed</string>
+    <string name="events">Events</string>
+    <string name="myEvents">Registered Events</string>
+    <string name="results">Winners</string>
+    <string name="map">Map</string>
+    <string name="contact">Contact</string>
+    <string name="about">About ATD PhaseShift</string>
 </resources>
