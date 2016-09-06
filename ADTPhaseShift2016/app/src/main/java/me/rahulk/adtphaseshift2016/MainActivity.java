@@ -1,5 +1,6 @@
 package me.rahulk.adtphaseshift2016;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,12 +18,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AboutPhaseShift.OnFragmentInteractionListener, NewsFeed.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, NewsFeed.OnFragmentInteractionListener, Events.OnFragmentInteractionListener, RegisteredEvents.OnFragmentInteractionListener, ContactCore.OnFragmentInteractionListener, AboutPhaseShift.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -81,6 +86,15 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_newsfeed) {
             fragmentClass = NewsFeed.class;
+        }
+        else if (id == R.id.nav_events) {
+            fragmentClass = Events.class;
+        }
+        else if (id == R.id.nav_myEvents) {
+            fragmentClass = RegisteredEvents.class;
+        }
+        else if (id == R.id.nav_contact) {
+            fragmentClass = ContactCore.class;
         }
         else {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
