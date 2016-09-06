@@ -63,6 +63,9 @@ public class AboutPhaseShift extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        ((MainActivity) getActivity()).setActionBarTitle("About us");
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_about_phase_shift, container, false);
     }

@@ -90,6 +90,9 @@ public class NewsFeed extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        ((MainActivity) getActivity()).setActionBarTitle("NewsFeed");
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_news_feed, container, false);
 
