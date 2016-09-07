@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,9 +17,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, NewsFeed.OnFragmentInteractionListener, Events.OnFragmentInteractionListener, RegisteredEvents.OnFragmentInteractionListener, ContactCore.OnFragmentInteractionListener, AboutPhaseShift.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, NewsFeed.OnFragmentInteractionListener, Events.OnFragmentInteractionListener, RegisteredEvents.OnFragmentInteractionListener, ContactCore.OnFragmentInteractionListener, AboutPhaseShift.OnFragmentInteractionListener, EventMap.OnFragmentInteractionListener {
+
+    private SessionManager session;
+    private String name;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,15 @@ public class MainActivity extends AppCompatActivity
 
 //        Intent intent = new Intent(this, LoginActivity.class);
 //        startActivity(intent);
+
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        name = session.getName();
+        email = session.getEmail();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,6 +55,19 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header = navigationView.getHeaderView(0);
+        TextView txtName = (TextView) header.findViewById(R.id.userName);
+        txtName.setText(name);
+        TextView txtEmail = (TextView) header.findViewById(R.id.email);
+        txtEmail.setText(email);
+    }
+
+    private void logoutUser() {
+        session.setLogin(false);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void setActionBarTitle(String title){
@@ -99,6 +127,9 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_contact) {
             fragmentClass = ContactCore.class;
+        }
+        else if (id == R.id.nav_map) {
+            fragmentClass = EventMap.class;
         }
         else {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

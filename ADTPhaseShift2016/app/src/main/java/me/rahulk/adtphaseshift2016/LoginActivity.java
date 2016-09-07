@@ -4,11 +4,25 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import me.rahulk.adtphaseshift2016.app.AppController;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -19,6 +33,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin;
     private TextView signupLink;
+
+    private String email;
+    private String password;
+
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +60,18 @@ public class LoginActivity extends AppCompatActivity {
         signupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                Intent i = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(i);
+                finish();
             }
         });
+
+        session = new SessionManager(getApplicationContext());
+
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            finish();
+        }
     }
 
     private void login() {
@@ -55,27 +82,61 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = txtEmail.getText().toString();
-        String password = txtPassword.getText().toString();
+        email = txtEmail.getText().toString();
+        password = txtPassword.getText().toString();
 
         // TODO: Implement your own authentication logic here.
-
-
-        new android.os.Handler().postDelayed(
-            new Runnable() {
-                public void run() {
-                    // On complete call either onLoginSuccess or onLoginFailed
-                    onLoginSuccess();
-                    // onLoginFailed();
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_LOGIN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Login Response: " + response.toString());
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (!error) {
+                        String name = jObj.getString("name");
+                        String email = jObj.getString("email");
+                        session.setLoginDetails(name, email);
+                        session.setLogin(true);
+                        onLoginSuccess();
+                    } else {
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                        onLoginFailed();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    onLoginFailed();
+                }
+                finally {
                     progressDialog.dismiss();
                 }
-            }, 3000);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e(TAG, "Login Error: " + volleyError.getMessage());
+                onLoginFailed();
+                progressDialog.dismiss();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq, "req_login");
     }
 
     @Override
@@ -86,11 +147,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onLoginSuccess() {
         btnLogin.setEnabled(true);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login Failed", Toast.LENGTH_LONG).show();
         btnLogin.setEnabled(true);
     }
 
