@@ -17,6 +17,8 @@ public class SessionManager {
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_NAME = "NameKey";
     private static final String KEY_Eamil = "EmailKey";
+    private static final String KEY_ID = "IDKey";
+    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     private final String TAG = "PS SESSION MANAGEMENT";
 
@@ -33,9 +35,10 @@ public class SessionManager {
         Log.d(TAG, "User login session modified!");
     }
 
-    public void setLoginDetails(String name, String email) {
+    public void setLoginDetails(String name, String email, int userID) {
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_Eamil, email);
+        editor.putInt(KEY_ID, userID);
         editor.commit();
         Log.v(TAG, "UserDetails Set");
     }
@@ -48,7 +51,18 @@ public class SessionManager {
         return sharedpreferences.getString(KEY_Eamil, "");
     }
 
+    public int getuserID() { return sharedpreferences.getInt(KEY_ID, 0); }
+
     public boolean isLoggedIn(){
         return sharedpreferences.getBoolean(KEY_IS_LOGGEDIN, false);
+    }
+
+    public void setFirstTimeLaunch(boolean isFirstTime) {
+        editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
+        editor.commit();
+    }
+
+    public boolean isFirstTimeLaunch() {
+        return sharedpreferences.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 }

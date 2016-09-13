@@ -77,12 +77,13 @@ public class ContactCore extends Fragment {
 
         ArrayList<Contact> contactList = new ArrayList<>();
 
-        contactList.add(new Contact("Anup R Kamath", "anupkamath27@gmail.com", "+91 9740280791"));
-        contactList.add(new Contact("Vibhu A Bharadwaj", "vibhu2395@gmail.com", "+91 8197918549"));
-        contactList.add(new Contact("Chinmayi Mohan", "chinmayi.bmsce@gmail.com", "+91 9986736096"));
-        contactList.add(new Contact("Shreyas Kamath", "shreyaskamath.kamath15@gmail.com", "+91 9482927682"));
-        contactList.add(new Contact("K Karan Prasad", "karanprasad224@gmail.com", "+91 9663155356"));
-        contactList.add(new Contact("Shrenik Parakh", "parakh.shrenik95@gmail.com", "+91 8951487023"));
+        contactList.add(new Contact("Anup R Kamath", "+91 9740280791"));
+        contactList.add(new Contact("Vibhu A Bharadwaj", "+91 8197918549"));
+        contactList.add(new Contact("Chinmayi Mohan", "+91 9986736096"));
+        contactList.add(new Contact("Shreyas Kamath", "+91 9483927682"));
+        contactList.add(new Contact("K Karan Prasad", "+91 9663155356"));
+        contactList.add(new Contact("Shrenik Parakh", "+91 8951487023"));
+        contactList.add(new Contact("", ""));
 
         ListView listView = (ListView) rootView.findViewById(R.id.coreList);
 

@@ -45,6 +45,8 @@ public class SignupActivity extends AppCompatActivity {
     private String mobile;
     private String college;
 
+    private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,8 @@ public class SignupActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        session = new SessionManager(getApplicationContext());
     }
 
     private void signup() {
@@ -104,7 +108,9 @@ public class SignupActivity extends AppCompatActivity {
                     Log.v("REG JSON RESPONSE", jObj.toString());
                     boolean error = jObj.getBoolean("error");
                     if(!error) {
-                        Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
+                        int userID = jObj.getInt("userID");
+                        session.setLoginDetails(name, email, userID);
+                        session.setLogin(true);
                         onSignupSuccess();
                     }
                     else {
@@ -148,7 +154,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void onSignupSuccess() {
         btnSignup.setEnabled(true);
-        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

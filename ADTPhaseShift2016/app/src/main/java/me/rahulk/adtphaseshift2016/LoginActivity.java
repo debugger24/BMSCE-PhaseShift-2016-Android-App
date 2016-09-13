@@ -101,7 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (!error) {
                         String name = jObj.getString("name");
                         String email = jObj.getString("email");
-                        session.setLoginDetails(name, email);
+                        int userID = jObj.getInt("userID");
+                        session.setLoginDetails(name, email, userID);
                         session.setLogin(true);
                         onLoginSuccess();
                     } else {

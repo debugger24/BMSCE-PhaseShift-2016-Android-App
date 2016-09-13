@@ -78,7 +78,10 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/aboutPhaseShiftPart4" />
 
+            <include layout="@layout/item_social"/>
+
         </LinearLayout>
+
     </ScrollView>
 
 </FrameLayout>

@@ -1,6 +1,7 @@
 package me.rahulk.adtphaseshift2016;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -67,7 +68,59 @@ public class AboutPhaseShift extends Fragment {
         ((MainActivity) getActivity()).setActionBarTitle("About us");
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_phase_shift, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_about_phase_shift, container, false);
+
+        View emailButton = rootview.findViewById(R.id.emailButton);
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"phaseshift.bmsce@gmail.com"});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "ADT PhaseShift 2016");
+                if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                    getContext().startActivity(intent);
+                }
+            }
+        });
+
+        View fbButton = rootview.findViewById(R.id.fbButton);
+        fbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse("https://www.facebook.com/techfest.bmsce");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                    getContext().startActivity(intent);
+                }
+            }
+        });
+
+        View twitterButton = rootview.findViewById(R.id.twitterButton);
+        twitterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse("https://twitter.com/techfest_bmsce");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                    getContext().startActivity(intent);
+                }
+            }
+        });
+
+        View instaButton = rootview.findViewById(R.id.instaButton);
+        instaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse("https://www.instagram.com/techfest_bmsce");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                    getContext().startActivity(intent);
+                }
+            }
+        });
+        return rootview;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

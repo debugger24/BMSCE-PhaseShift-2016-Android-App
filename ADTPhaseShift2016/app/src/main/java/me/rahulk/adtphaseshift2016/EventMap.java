@@ -1,9 +1,11 @@
 package me.rahulk.adtphaseshift2016;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 /**
@@ -70,11 +75,18 @@ public class EventMap extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_event_map, container, false);
+        View myView = rootview.findViewById(R.id.mapOutterFragment);
+
+        MapFragment mMapFragment = MapFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        //fragmentTransaction.add(R.id.mapOutterFragment, mMapFragment);
+        fragmentTransaction.commit();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
-        //MapFragment mapFragment = (MapFragment) rootview.findViewById(R.id.map);
-        //mapFragment.getMapAsync(this);
+        // SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
+        //SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
+        // MapFragment mapFragment = (MapFragment) rootview.findViewById(R.id.map);
+        // mapFragment.getMapAsync(this);
 
         return rootview;
     }
@@ -105,7 +117,10 @@ public class EventMap extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
+        final LatLng PERTH = new LatLng(-31.90, 115.86);
+        Marker perth = googleMap.addMarker(new MarkerOptions()
+                .position(PERTH)
+                .flat(true));
     }
 
     /**
