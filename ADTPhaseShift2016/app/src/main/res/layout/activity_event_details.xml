@@ -203,6 +203,26 @@
                 android:text="@string/aboutPhaseShiftPart1"
                 android:padding="8dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/forBMSCE"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@drawable/bmsce"
+                    android:id="@+id/bmsce"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="This is BMSCE Exclusive Event"/>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

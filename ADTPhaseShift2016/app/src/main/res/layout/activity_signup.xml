@@ -29,7 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:text="Rahul"
                 android:hint="Name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -42,7 +41,6 @@
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="rahulcomp24@gmail.com"
                 android:inputType="textEmailAddress"
                 android:hint="Email" />
         </android.support.design.widget.TextInputLayout>
@@ -56,7 +54,6 @@
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RahulRahul"
                 android:inputType="textPassword"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
@@ -70,7 +67,6 @@
             <EditText android:id="@+id/input_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="9999999999"
                 android:hint="Mobile Number"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -83,7 +79,6 @@
             <EditText android:id="@+id/input_college"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BMSCE"
                 android:hint="College Name"/>
         </android.support.design.widget.TextInputLayout>
 

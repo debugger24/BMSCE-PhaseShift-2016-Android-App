@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "70870535733",
+    "firebase_url": "https://phaseshift-2016.firebaseio.com",
+    "project_id": "phaseshift-2016",
+    "storage_bucket": "phaseshift-2016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70870535733:android:6eeb78f0f1fcead9",
+        "android_client_info": {
+          "package_name": "me.rahulk.adtphaseshift2016"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70870535733-hs273ah9tsbmpqhri6hak25l1c81rnbe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCewpyKLeFkU3i_yk55kGxPhvJJ0mJHOM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

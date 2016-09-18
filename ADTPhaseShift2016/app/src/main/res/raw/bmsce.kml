@@ -7,7 +7,7 @@
 			<name>Blocks</name>
 			<Placemark>
 				<name>Library Auditorium</name>
-				<styleUrl>#poly-0288D1-0-255-nodesc</styleUrl>
+				<styleUrl>#poly-0288D1-0-122-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -19,7 +19,7 @@
 			</Placemark>
 			<Placemark>
 				<name>DANGER - Construction Area</name>
-				<styleUrl>#poly-FF5252-0-255-nodesc</styleUrl>
+				<styleUrl>#poly-FF5252-0-130-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -31,7 +31,7 @@
 			</Placemark>
 			<Placemark>
 				<name>Indoor Stadium</name>
-				<styleUrl>#poly-F9A825-0-255-nodesc</styleUrl>
+				<styleUrl>#poly-F9A825-0-125-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -43,7 +43,7 @@
 			</Placemark>
 			<Placemark>
 				<name>Classroom Block</name>
-				<styleUrl>#poly-F48FB1-0-161-nodesc</styleUrl>
+				<styleUrl>#poly-F48FB1-0-120-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -55,7 +55,7 @@
 			</Placemark>
 			<Placemark>
 				<name>PG Block</name>
-				<styleUrl>#poly-9C27B0-0-255-nodesc</styleUrl>
+				<styleUrl>#poly-9C27B0-0-105-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -67,7 +67,7 @@
 			</Placemark>
 			<Placemark>
 				<name>Mechanical Block</name>
-				<styleUrl>#poly-0097A7-0-176-nodesc</styleUrl>
+				<styleUrl>#poly-0097A7-0-112-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -78,8 +78,8 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CSE, ISE and ECE Block</name>
-				<styleUrl>#poly-F9A825-0-255-nodesc</styleUrl>
+				<name>ECE Block</name>
+				<styleUrl>#poly-F9A825-0-112-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -91,7 +91,7 @@
 			</Placemark>
 			<Placemark>
 				<name>TCE Block</name>
-				<styleUrl>#poly-006064-0-186-nodesc</styleUrl>
+				<styleUrl>#poly-006064-0-120-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
@@ -101,55 +101,17 @@
 					</outerBoundaryIs>
 				</Polygon>
 			</Placemark>
-			<Placemark>
-				<name>Canteen - Classroom Block</name>
-				<styleUrl>#icon-1577-0288D1-nodesc</styleUrl>
-				<Point>
-					<coordinates>77.5664592,12.942501,0.0</coordinates>
-				</Point>
-			</Placemark>
-			<Placemark>
-				<name>Point 12</name>
-				<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-				<Point>
-					<coordinates>77.5656062,12.9416971,0.0</coordinates>
-				</Point>
-			</Placemark>
 		</Folder>
 		<Folder>
 			<name>Untitled layer</name>
 		</Folder>
-		<Style id='icon-1577-0288D1-nodesc'>
-			<IconStyle>
-				<color>ffD18802</color>
-				<scale>1.0</scale>
-				<Icon>
-					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-				</Icon>
-			</IconStyle>
-			<BalloonStyle>
-				<text><![CDATA[<h3>$[name]</h3>]]></text>
-			</BalloonStyle>
-		</Style>
-		<Style id='icon-1899-0288D1-nodesc'>
-			<IconStyle>
-				<color>ffD18802</color>
-				<scale>1.0</scale>
-				<Icon>
-					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-				</Icon>
-			</IconStyle>
-			<BalloonStyle>
-				<text><![CDATA[<h3>$[name]</h3>]]></text>
-			</BalloonStyle>
-		</Style>
-		<Style id='poly-006064-0-186-nodesc-normal'>
+		<Style id='poly-006064-0-120-nodesc-normal'>
 			<LineStyle>
 				<color>ff646000</color>
 				<width>0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>BA646000</color>
+				<color>78646000</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -157,13 +119,13 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<Style id='poly-006064-0-186-nodesc-highlight'>
+		<Style id='poly-006064-0-120-nodesc-highlight'>
 			<LineStyle>
 				<color>ff646000</color>
 				<width>0.0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>BA646000</color>
+				<color>78646000</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -171,23 +133,23 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<StyleMap id='poly-006064-0-186-nodesc'>
+		<StyleMap id='poly-006064-0-120-nodesc'>
 			<Pair>
 				<key>normal</key>
-				<styleUrl>#poly-006064-0-186-nodesc-normal</styleUrl>
+				<styleUrl>#poly-006064-0-120-nodesc-normal</styleUrl>
 			</Pair>
 			<Pair>
 				<key>highlight</key>
-				<styleUrl>#poly-006064-0-186-nodesc-highlight</styleUrl>
+				<styleUrl>#poly-006064-0-120-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
-		<Style id='poly-0097A7-0-176-nodesc-normal'>
+		<Style id='poly-0097A7-0-112-nodesc-normal'>
 			<LineStyle>
 				<color>ffA79700</color>
 				<width>0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>B0A79700</color>
+				<color>70A79700</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -195,13 +157,13 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<Style id='poly-0097A7-0-176-nodesc-highlight'>
+		<Style id='poly-0097A7-0-112-nodesc-highlight'>
 			<LineStyle>
 				<color>ffA79700</color>
 				<width>0.0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>B0A79700</color>
+				<color>70A79700</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -209,23 +171,23 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<StyleMap id='poly-0097A7-0-176-nodesc'>
+		<StyleMap id='poly-0097A7-0-112-nodesc'>
 			<Pair>
 				<key>normal</key>
-				<styleUrl>#poly-0097A7-0-176-nodesc-normal</styleUrl>
+				<styleUrl>#poly-0097A7-0-112-nodesc-normal</styleUrl>
 			</Pair>
 			<Pair>
 				<key>highlight</key>
-				<styleUrl>#poly-0097A7-0-176-nodesc-highlight</styleUrl>
+				<styleUrl>#poly-0097A7-0-112-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
-		<Style id='poly-0288D1-0-255-nodesc-normal'>
+		<Style id='poly-0288D1-0-122-nodesc-normal'>
 			<LineStyle>
 				<color>ffD18802</color>
 				<width>0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FFD18802</color>
+				<color>7AD18802</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -233,13 +195,13 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<Style id='poly-0288D1-0-255-nodesc-highlight'>
+		<Style id='poly-0288D1-0-122-nodesc-highlight'>
 			<LineStyle>
 				<color>ffD18802</color>
 				<width>0.0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FFD18802</color>
+				<color>7AD18802</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -247,23 +209,23 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<StyleMap id='poly-0288D1-0-255-nodesc'>
+		<StyleMap id='poly-0288D1-0-122-nodesc'>
 			<Pair>
 				<key>normal</key>
-				<styleUrl>#poly-0288D1-0-255-nodesc-normal</styleUrl>
+				<styleUrl>#poly-0288D1-0-122-nodesc-normal</styleUrl>
 			</Pair>
 			<Pair>
 				<key>highlight</key>
-				<styleUrl>#poly-0288D1-0-255-nodesc-highlight</styleUrl>
+				<styleUrl>#poly-0288D1-0-122-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
-		<Style id='poly-9C27B0-0-255-nodesc-normal'>
+		<Style id='poly-9C27B0-0-105-nodesc-normal'>
 			<LineStyle>
 				<color>ffB0279C</color>
 				<width>0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FFB0279C</color>
+				<color>69B0279C</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -271,13 +233,13 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<Style id='poly-9C27B0-0-255-nodesc-highlight'>
+		<Style id='poly-9C27B0-0-105-nodesc-highlight'>
 			<LineStyle>
 				<color>ffB0279C</color>
 				<width>0.0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FFB0279C</color>
+				<color>69B0279C</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -285,23 +247,23 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<StyleMap id='poly-9C27B0-0-255-nodesc'>
+		<StyleMap id='poly-9C27B0-0-105-nodesc'>
 			<Pair>
 				<key>normal</key>
-				<styleUrl>#poly-9C27B0-0-255-nodesc-normal</styleUrl>
+				<styleUrl>#poly-9C27B0-0-105-nodesc-normal</styleUrl>
 			</Pair>
 			<Pair>
 				<key>highlight</key>
-				<styleUrl>#poly-9C27B0-0-255-nodesc-highlight</styleUrl>
+				<styleUrl>#poly-9C27B0-0-105-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
-		<Style id='poly-F48FB1-0-161-nodesc-normal'>
+		<Style id='poly-F48FB1-0-120-nodesc-normal'>
 			<LineStyle>
 				<color>ffB18FF4</color>
 				<width>0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>A1B18FF4</color>
+				<color>78B18FF4</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -309,13 +271,13 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<Style id='poly-F48FB1-0-161-nodesc-highlight'>
+		<Style id='poly-F48FB1-0-120-nodesc-highlight'>
 			<LineStyle>
 				<color>ffB18FF4</color>
 				<width>0.0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>A1B18FF4</color>
+				<color>78B18FF4</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -323,23 +285,23 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<StyleMap id='poly-F48FB1-0-161-nodesc'>
+		<StyleMap id='poly-F48FB1-0-120-nodesc'>
 			<Pair>
 				<key>normal</key>
-				<styleUrl>#poly-F48FB1-0-161-nodesc-normal</styleUrl>
+				<styleUrl>#poly-F48FB1-0-120-nodesc-normal</styleUrl>
 			</Pair>
 			<Pair>
 				<key>highlight</key>
-				<styleUrl>#poly-F48FB1-0-161-nodesc-highlight</styleUrl>
+				<styleUrl>#poly-F48FB1-0-120-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
-		<Style id='poly-F9A825-0-255-nodesc-normal'>
+		<Style id='poly-F9A825-0-112-nodesc-normal'>
 			<LineStyle>
 				<color>ff25A8F9</color>
 				<width>0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FF25A8F9</color>
+				<color>7025A8F9</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -347,13 +309,13 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<Style id='poly-F9A825-0-255-nodesc-highlight'>
+		<Style id='poly-F9A825-0-112-nodesc-highlight'>
 			<LineStyle>
 				<color>ff25A8F9</color>
 				<width>0.0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FF25A8F9</color>
+				<color>7025A8F9</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -361,23 +323,61 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<StyleMap id='poly-F9A825-0-255-nodesc'>
+		<StyleMap id='poly-F9A825-0-112-nodesc'>
 			<Pair>
 				<key>normal</key>
-				<styleUrl>#poly-F9A825-0-255-nodesc-normal</styleUrl>
+				<styleUrl>#poly-F9A825-0-112-nodesc-normal</styleUrl>
 			</Pair>
 			<Pair>
 				<key>highlight</key>
-				<styleUrl>#poly-F9A825-0-255-nodesc-highlight</styleUrl>
+				<styleUrl>#poly-F9A825-0-112-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
-		<Style id='poly-FF5252-0-255-nodesc-normal'>
+		<Style id='poly-F9A825-0-125-nodesc-normal'>
+			<LineStyle>
+				<color>ff25A8F9</color>
+				<width>0</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>7D25A8F9</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id='poly-F9A825-0-125-nodesc-highlight'>
+			<LineStyle>
+				<color>ff25A8F9</color>
+				<width>0.0</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>7D25A8F9</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='poly-F9A825-0-125-nodesc'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#poly-F9A825-0-125-nodesc-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#poly-F9A825-0-125-nodesc-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='poly-FF5252-0-130-nodesc-normal'>
 			<LineStyle>
 				<color>ff5252FF</color>
 				<width>0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FF5252FF</color>
+				<color>825252FF</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -385,13 +385,13 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<Style id='poly-FF5252-0-255-nodesc-highlight'>
+		<Style id='poly-FF5252-0-130-nodesc-highlight'>
 			<LineStyle>
 				<color>ff5252FF</color>
 				<width>0.0</width>
 			</LineStyle>
 			<PolyStyle>
-				<color>FF5252FF</color>
+				<color>825252FF</color>
 				<fill>1</fill>
 				<outline>1</outline>
 			</PolyStyle>
@@ -399,14 +399,14 @@
 				<text><![CDATA[<h3>$[name]</h3>]]></text>
 			</BalloonStyle>
 		</Style>
-		<StyleMap id='poly-FF5252-0-255-nodesc'>
+		<StyleMap id='poly-FF5252-0-130-nodesc'>
 			<Pair>
 				<key>normal</key>
-				<styleUrl>#poly-FF5252-0-255-nodesc-normal</styleUrl>
+				<styleUrl>#poly-FF5252-0-130-nodesc-normal</styleUrl>
 			</Pair>
 			<Pair>
 				<key>highlight</key>
-				<styleUrl>#poly-FF5252-0-255-nodesc-highlight</styleUrl>
+				<styleUrl>#poly-FF5252-0-130-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
 	</Document>

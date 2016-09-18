@@ -19,6 +19,8 @@ public class Event implements Serializable{
     private String date;
     private String time;
     private String description;
+    private String eventCover;
+    private String eventIcon;
 
     public Event(int id, String title, String department, boolean bmsce, String regFees, String prize1, String prize2, String venue, String date, String time, String coordinator, String coordinatorNumber, String description) {
         this.id = id;

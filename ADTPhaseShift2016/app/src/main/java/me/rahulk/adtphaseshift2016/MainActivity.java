@@ -1,12 +1,18 @@
 package me.rahulk.adtphaseshift2016;
 
+import android.*;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,18 +22,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, NewsFeed.OnFragmentInteractionListener, Events.OnFragmentInteractionListener, ContactCore.OnFragmentInteractionListener, AboutPhaseShift.OnFragmentInteractionListener, EventMap.OnFragmentInteractionListener, ContactFragment.OnFragmentInteractionListener, ContactEmergency.OnFragmentInteractionListener, MeetDeveloper.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, NewsFeed.OnFragmentInteractionListener, Events.OnFragmentInteractionListener, ContactCore.OnFragmentInteractionListener, AboutPhaseShift.OnFragmentInteractionListener, EventMap.OnFragmentInteractionListener, ContactFragment.OnFragmentInteractionListener, ContactEmergency.OnFragmentInteractionListener, MeetDeveloper.OnFragmentInteractionListener, DaysLeft.OnFragmentInteractionListener {
 
     private SessionManager session;
     private String name;
     private String email;
 
+    Fragment fragment = null;
+    Class fragmentClass = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         session = new SessionManager(getApplicationContext());
 
@@ -56,6 +68,35 @@ public class MainActivity extends AppCompatActivity
         txtName.setText(name);
         TextView txtEmail = (TextView) header.findViewById(R.id.email);
         txtEmail.setText(email);
+
+        fragmentClass = NewsFeed.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, fragment).commit();
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        1);
+            }
+        }
     }
 
     private void logoutUser() {
@@ -88,36 +129,36 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+
         if(id == R.id.nav_map) {
             launchMap();
             return true;
         }
 
-        Fragment fragment = null;
-        Class fragmentClass = null;
-        if (id == R.id.nav_about) {
-            fragmentClass = AboutPhaseShift.class;
+        switch (id) {
+            case R.id.nav_newsfeed:
+                fragmentClass = NewsFeed.class;
+                break;
+            case R.id.nav_events:
+                fragmentClass = Events.class;
+                break;
+            case R.id.nav_about:
+                fragmentClass = AboutPhaseShift.class;
+                break;
+            case R.id.nav_aboutDev:
+                fragmentClass = MeetDeveloper.class;
+                break;
+            case R.id.nav_contact:
+                fragmentClass = ContactFragment.class;
+                break;
+            case R.id.nav_logout:
+                logoutUser();
+                break;
+            default:
+                fragmentClass = DaysLeft.class;
+                break;
         }
-        else if (id == R.id.nav_newsfeed) {
-            fragmentClass = NewsFeed.class;
-        }
-        else if (id == R.id.nav_events) {
-            fragmentClass = Events.class;
-        }
-        else if (id == R.id.nav_contact) {
-            fragmentClass = ContactFragment.class;
-        }
-        else if( id == R.id.nav_aboutDev) {
-            fragmentClass = MeetDeveloper.class;
-        }
-        else if (id == R.id.nav_logout) {
-            logoutUser();
-        }
-        else {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
-        }
+
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {

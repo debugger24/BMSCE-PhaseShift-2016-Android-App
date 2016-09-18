@@ -1,7 +1,11 @@
 package me.rahulk.adtphaseshift2016;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtPassword;
 
     private Button btnLogin;
-    private TextView signupLink;
+    private TextView signupLink, skipLogin;
 
     private String email;
     private String password;
@@ -44,16 +48,34 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         txtEmail = (EditText) findViewById(R.id.input_email);
         txtPassword = (EditText) findViewById(R.id.input_password);
 
         btnLogin = (Button) findViewById(R.id.btn_login);
         signupLink = (TextView) findViewById(R.id.link_signup);
+        skipLogin = (TextView) findViewById(R.id.skipLogin);
+
+        skipLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                session.setLoginDetails("Guest User", "", 0);
+                session.setLogin(true);
+                onLoginSuccess();
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                if(isNetworkAvailable()) {
+                    login();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -91,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         password = txtPassword.getText().toString();
 
         // TODO: Implement your own authentication logic here.
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_LOGIN, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_REGISTER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Login Response: " + response.toString());
@@ -178,5 +200,12 @@ public class LoginActivity extends AppCompatActivity {
             txtPassword.setError(null);
         }
         return valid;
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

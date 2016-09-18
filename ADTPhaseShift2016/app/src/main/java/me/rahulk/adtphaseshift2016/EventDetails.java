@@ -1,9 +1,15 @@
 package me.rahulk.adtphaseshift2016;
 
+import android.*;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -43,6 +49,8 @@ public class EventDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Intent intent = getIntent();
         event = (Event) intent.getSerializableExtra("details");
 
@@ -63,9 +71,11 @@ public class EventDetails extends AppCompatActivity {
 
 //        btnRegister = (Button) findViewById(R.id.btnRegister);
 
-        imageView = (ImageView) findViewById(R.id.eventCover);
+        //imageView = (ImageView) findViewById(R.id.eventCover);
 
-        imageView.setImageResource(R.drawable.cover50);
+        //imageView.setImageResource(R.drawable.cover50);
+
+        View forBMSCE = findViewById(R.id.forBMSCE);
 
         session = new SessionManager(getApplicationContext());
 
@@ -100,12 +110,44 @@ public class EventDetails extends AppCompatActivity {
 
         txtDesctiption.setText(event.getDescription());
 
-//        btnRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                register(event.getId(), session.getuserID());
-//            }
-//        });
+        if(event.getBMSCE()) {
+            forBMSCE.setVisibility(View.VISIBLE);
+        }
+        else {
+            forBMSCE.setVisibility(View.GONE);
+        }
+
+        txtCoordinator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + event.getCoordinatorNumber()));
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    Toast.makeText(getApplicationContext(), "Failed : Require Permission to Call", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        });
+
+        if (ContextCompat.checkSelfPermission(EventDetails.this,
+                android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(EventDetails.this,
+                    android.Manifest.permission.CALL_PHONE)) {
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(EventDetails.this,
+                        new String[]{android.Manifest.permission.CALL_PHONE},
+                        1);
+            }
+        }
 
     }
 
@@ -117,16 +159,24 @@ public class EventDetails extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_share) {
-            shareEvent();
-            return true;
+        switch (id) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.action_share:
+                shareEvent();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

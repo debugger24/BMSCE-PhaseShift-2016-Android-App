@@ -5,14 +5,9 @@
     android:layout_height="match_parent"
     tools:context="me.rahulk.adtphaseshift2016.MapActivity">
 
-    <Spinner
-        android:id="@+id/location_spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp" />
 
     <fragment
         android:id="@+id/map"
-        android:layout_below="@id/location_spinner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         class="com.google.android.gms.maps.SupportMapFragment" />

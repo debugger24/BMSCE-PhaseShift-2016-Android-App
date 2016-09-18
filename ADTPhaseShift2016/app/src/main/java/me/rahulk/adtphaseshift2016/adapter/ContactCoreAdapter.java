@@ -111,7 +111,7 @@ public class ContactCoreAdapter extends ArrayAdapter<Contact> {
                     callIntent.setData(Uri.parse("tel:" + currentContact.getMobileNumber()));
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
-                        Toast.makeText(getContext(), "Failed : Required Permission to Call", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Failed : Require Permission to Call", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     getContext().startActivity(callIntent);

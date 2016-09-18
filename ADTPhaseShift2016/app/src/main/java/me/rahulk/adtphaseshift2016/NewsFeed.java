@@ -1,13 +1,17 @@
 package me.rahulk.adtphaseshift2016;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Cache;
 import com.android.volley.Cache.Entry;
@@ -54,7 +58,9 @@ public class NewsFeed extends Fragment {
     private ListView listView;
     private FeedListAdapter listAdapter;
     private List<FeedItem> feedItems;
-    private String URL_FEED = "http://rahulk.me/ps/getNewsFeed.php";
+    private String URL_FEED = "http://bmscephaseshift.com/api/getNewsFeed.php";
+    private SwipeRefreshLayout swipeContainer;
+
 
     public NewsFeed() {
         // Required empty public constructor
@@ -102,6 +108,31 @@ public class NewsFeed extends Fragment {
         listAdapter = new FeedListAdapter(getActivity(), feedItems);
         listView.setAdapter(listAdapter);
 
+        swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                if(isNetworkAvailable()) {
+                    refreshData();
+                }
+                else {
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                    swipeContainer.setRefreshing(false);
+                }
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
+
         // We first check for cached request
         Cache cache = AppController.getInstance().getRequestQueue().getCache();
         Entry entry = cache.get(URL_FEED);
@@ -121,29 +152,38 @@ public class NewsFeed extends Fragment {
         }
         else {
             // making fresh volley request and getting json
-            JsonObjectRequest jsonReq = new JsonObjectRequest(Method.GET,
-                    URL_FEED, null, new Response.Listener<JSONObject>() {
-
-                @Override
-                public void onResponse(JSONObject response) {
-                    VolleyLog.d(TAG, "Response: " + response.toString());
-                    if (response != null) {
-                        parseJsonFeed(response);
-                    }
-                }
-            }, new Response.ErrorListener() {
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.d(TAG, "Error: " + error.getMessage());
-                }
-            });
-
-            // Adding request to volley request queue
-            AppController.getInstance().addToRequestQueue(jsonReq);
+            if(isNetworkAvailable()) {
+                refreshData();
+            }
+            else {
+                Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+            }
         }
 
         return rootView;
+    }
+
+    private void refreshData() {
+        JsonObjectRequest jsonReq = new JsonObjectRequest(Method.GET,
+                URL_FEED, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                VolleyLog.d(TAG, "Response: " + response.toString());
+                if (response != null) {
+                    parseJsonFeed(response);
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        });
+
+        // Adding request to volley request queue
+        AppController.getInstance().addToRequestQueue(jsonReq);
     }
 
     /**
@@ -152,7 +192,7 @@ public class NewsFeed extends Fragment {
     private void parseJsonFeed(JSONObject response) {
         try {
             JSONArray feedArray = response.getJSONArray("feed");
-
+            feedItems.clear();
             for (int i = 0; i < feedArray.length(); i++) {
                 JSONObject feedObj = (JSONObject) feedArray.get(i);
 
@@ -161,7 +201,7 @@ public class NewsFeed extends Fragment {
                 item.setName(feedObj.getString("UserName"));
 
                 // Image might be null sometimes
-                String image = feedObj.isNull("Image") ? null : ("http://bmscephaseshift.com/api/img/event/" + feedObj
+                String image = feedObj.getString("Image").equals("") ? null : ("http://bmscephaseshift.com/api/img/event/" + feedObj
                         .getString("Image") + ".jpg");
                 item.setImge(image);
                 item.setStatus(feedObj.getString("Message"));
@@ -169,10 +209,9 @@ public class NewsFeed extends Fragment {
                 item.setTimeStamp(feedObj.getString("TimeStamp"));
 
                 // url might be null sometimes
-                String feedUrl = feedObj.isNull("URL") ? null : feedObj
+                String feedUrl = (feedObj.isNull("URL") || feedObj.getString("URL").equals("")) ? null : feedObj
                         .getString("URL");
                 item.setUrl(feedUrl);
-
                 feedItems.add(item);
             }
 
@@ -180,6 +219,9 @@ public class NewsFeed extends Fragment {
             listAdapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        finally {
+            swipeContainer.setRefreshing(false);
         }
     }
 
@@ -220,5 +262,12 @@ public class NewsFeed extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
