@@ -77,6 +77,18 @@ public class ContactEmergency extends Fragment {
         contactList.add(new Contact("Ambulance", "108"));
         contactList.add(new Contact("Police Control Room", "100"));
 
+//        contactList.add(new Contact("Food", "8867996744"));
+//        contactList.add(new Contact("Water", "8792467114"));
+//        contactList.add(new Contact("Logistics", "9481310600"));
+//        contactList.add(new Contact("Prize", "7259825389"));
+//        contactList.add(new Contact("Finance", "9448905422"));
+//        contactList.add(new Contact("Onspot", "9035769575"));
+//        contactList.add(new Contact("Security", "8147688713"));
+//        contactList.add(new Contact("Hospitality", "9686499765"));
+//        contactList.add(new Contact("Database", "8553118957"));
+//        contactList.add(new Contact("Helpdesk", "7829888663"));
+
+
         ListView listView = (ListView) rootView.findViewById(R.id.coreList);
 
         ContactCoreAdapter contactCoreAdapter = new ContactCoreAdapter(getContext(), contactList);

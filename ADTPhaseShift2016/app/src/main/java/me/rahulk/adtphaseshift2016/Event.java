@@ -10,6 +10,7 @@ public class Event implements Serializable{
     private String title;
     private String department;
     private boolean bmsce;
+    private boolean full;
     private String prize1;
     private String prize2;
     private String coordinator;
@@ -22,11 +23,12 @@ public class Event implements Serializable{
     private String eventCover;
     private String eventIcon;
 
-    public Event(int id, String title, String department, boolean bmsce, String regFees, String prize1, String prize2, String venue, String date, String time, String coordinator, String coordinatorNumber, String description) {
+    public Event(int id, String title, String department, boolean bmsce, boolean full, String regFees, String prize1, String prize2, String venue, String date, String time, String coordinator, String coordinatorNumber, String description) {
         this.id = id;
         this.title = title;
         this.department = department;
         this.bmsce = bmsce;
+        this.full = full;
         this.regFees = regFees;
         this.prize1 = prize1;
         this.prize2 = prize2;

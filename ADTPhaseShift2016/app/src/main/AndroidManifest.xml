@@ -53,6 +53,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="me.rahulk.adtphaseshift2016.app"
+            android:name=".data.EventProvider" />
     </application>
 
 </manifest>

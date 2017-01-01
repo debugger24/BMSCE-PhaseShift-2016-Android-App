@@ -46,14 +46,5 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"/>
 
-        <ImageView
-            android:layout_width="20dp"
-            android:src="@drawable/bmsce"
-            android:id="@+id/alert2"
-            android:layout_height="20dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
-            android:layout_toLeftOf="@+id/alert1"
-            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </LinearLayout>

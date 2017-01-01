@@ -1,16 +1,23 @@
 package me.rahulk.adtphaseshift2016;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import me.rahulk.adtphaseshift2016.adapter.EventFragmentPagerAdapter;
+import me.rahulk.adtphaseshift2016.data.FetchEventTask;
 
 
 /**
@@ -62,18 +69,24 @@ public class Events extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        ((MainActivity) getActivity()).setActionBarTitle("Events");
+
         View rootView = inflater.inflate(R.layout.fragment_events, container, false);
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         viewPager.setAdapter(new EventFragmentPagerAdapter(getChildFragmentManager(), getContext()));
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        refreshData();
 
         return rootView;
     }
@@ -115,5 +128,42 @@ public class Events extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Add your menu entries here
+        inflater.inflate(R.menu.event_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+//        JFIZL-VBYMP
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                Toast.makeText(getContext(), "Downloading Latest Information", Toast.LENGTH_SHORT).show();
+                if(isNetworkAvailable()) {
+                    refreshData();
+                }
+                else {
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    private void refreshData() {
+        new FetchEventTask(getActivity()).execute();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
